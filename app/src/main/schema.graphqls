@@ -1,0 +1,57 @@
+type Query {
+  ranking(criteria: String, count: Int, page: Int, generation: Int): [User]
+
+  generations: [Generation]
+}
+
+type User {
+  name: String
+
+  generation: Int
+
+  nickname: String
+
+  followers: Int
+
+  following: Int
+
+  repos_url: String
+
+  public_repos: Int
+
+  avatar_url: String
+
+  company: String
+
+  blog: String
+
+  location: String
+
+  email: String
+
+  bio: String
+
+  twitter_username: String
+
+  contributions: Int
+
+  pullRequests: Int
+
+  issues: Int
+
+  publicRepositories: Int
+
+  stared: Int
+
+  forked: Int
+}
+
+type Generation {
+  _id: Int
+
+  count: Int
+}
+
+schema {
+  query: Query
+}

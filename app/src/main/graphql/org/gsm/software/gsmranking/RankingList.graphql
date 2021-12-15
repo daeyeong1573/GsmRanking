@@ -1,0 +1,8 @@
+query RankingResult($criteria: String!, $count: Int!, $page: Int!, $generation: Int!) {
+    ranking(criteria: $criteria, count: $count, page: $page, generation: $generation) {
+        contributions
+        name
+        generation
+        nickname
+    }
+}
