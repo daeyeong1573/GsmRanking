@@ -2,37 +2,34 @@ package org.gsm.software.gsmranking.model
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.gsm.software.gsmranking.RankingResultQuery
-import org.gsm.software.gsmranking.adapter.MainAdapter
 import org.gsm.software.gsmranking.adapter.MainListAdapter
 
 object BindingAdapter {
 
-    @BindingAdapter("rankSet")
+    @BindingAdapter("setProfile")
     @JvmStatic
-    fun rankingSet(view:TextView,text : List<String>){
-       for (i in text.indices){
-           view.text = text[i]+"등"
-       }
+    fun setProfile(view:ImageView,url : String){
+        Glide.with(view.context)
+            .load(url)
+            .into(view)
     }
 
-    @BindingAdapter("bindList")
+    @BindingAdapter("setName","setGeneration")
     @JvmStatic
-    fun bindList(recyclerView: RecyclerView,items : ObservableArrayList<RankingResultQuery.Ranking>?){
-        if(recyclerView.adapter == null){
-            val adapter = MainAdapter()
-            recyclerView.adapter = adapter
-        }
-        if (items != null) {
-            (recyclerView.adapter as MainAdapter).items = items
-        }
-        recyclerView.adapter?.notifyDataSetChanged()
+    fun setName(view: TextView,name : String, generation : Int){
+        view.text = "$name | $generation 기"
+    }
+
+    @BindingAdapter("contributions")
+    @JvmStatic
+    fun contributions(view : TextView, contributions : Int){
+        view.text = "contributions : $contributions"
     }
 
     @BindingAdapter("listData")
