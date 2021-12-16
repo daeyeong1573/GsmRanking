@@ -11,6 +11,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.gsm.software.gsmranking.adapter.MainListAdapter
 import org.gsm.software.gsmranking.databinding.ActivityMainBinding
 import org.gsm.software.gsmranking.viewmodel.MainViewModel
 import org.koin.android.ext.android.inject
@@ -28,16 +29,15 @@ class MainActivity : AppCompatActivity() {
         binding.activity = this@MainActivity
         binding.vm = vm
         binding.lifecycleOwner = this@MainActivity
+        setRecyclerView()
         vm.getRanking()
 
+    }
+    private fun setRecyclerView(){
+        val adapter = MainListAdapter(vm)
+        binding.recyclerview.adapter = adapter
+        binding.recyclerview.setHasFixedSize(true)
     }
 
 }
 
-private fun createOkHttpClient(): OkHttpClient {
-    val builder = OkHttpClient.Builder()
-    val interceptor = HttpLoggingInterceptor()
-    interceptor.level = HttpLoggingInterceptor.Level.BODY
-    builder.addInterceptor(interceptor)
-    return builder.build()
-}

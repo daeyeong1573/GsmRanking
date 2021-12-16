@@ -13,14 +13,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(val repository : MainRepository): ViewModel() {
 
-    private val _ranking = MutableLiveData<Int>()
-            val rannking : LiveData<Int> get() = _ranking
+    var ranking = mutableListOf<String>()
 
-    val items = ObservableArrayList<RankingResultQuery.Ranking>()
-
-    init {
-        _ranking.value = 0
-    }
+    private val _items = MutableLiveData<List<RankingResultQuery.Ranking>>()
+            val items : LiveData<List<RankingResultQuery.Ranking>> get() = _items
 
     fun getRanking(){
         viewModelScope.launch {
@@ -32,8 +28,8 @@ class MainViewModel @Inject constructor(val repository : MainRepository): ViewMo
                }
             val data = response?.data?.ranking?.filterNotNull()
             if(data != null && !response.hasErrors()){
-                items.addAll(data)
-                Log.d(TAG, "getRanking: ${data[1].name}")
+                _items.value = data
+                Log.d(TAG, "getRanking: ${data[0].contributions}")
             }
         }
     }

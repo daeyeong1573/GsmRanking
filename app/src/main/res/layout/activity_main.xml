@@ -49,13 +49,15 @@
         </LinearLayout>
 
        <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recyclerview"
            android:layout_width="match_parent"
            android:layout_height="0dp"
            android:layout_marginTop="20dp"
+           app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintTop_toBottomOf="@+id/firsrt_linear"
            tools:listitem="@layout/ranking_item"
            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-           bindList="@{vm.items}"
+           app:listData="@{vm.items}"
            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

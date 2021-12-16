@@ -6,17 +6,20 @@
 
     <data>
         <variable
+            name="vm"
+            type="org.gsm.software.gsmranking.viewmodel.MainViewModel" />
+        <variable
             name="ritem"
             type="org.gsm.software.gsmranking.RankingResultQuery.Ranking" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="250dp"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:background="@drawable/ranking_background"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,14 +29,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-               <TextView
-                   android:id="@+id/ranking"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="10dp"
-                   tools:text = "1등"
-                   android:layout_centerHorizontal="true"
-                   />
+
+                <TextView
+                    android:id="@+id/ranking"
+                    rankSet="@{vm.ranking}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    tools:text="1등" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -42,7 +46,18 @@
                     android:text="@{ritem.name}"
                     android:textColor="@color/black"
                     tools:text = "오병진"
+                    android:layout_marginTop="5dp"
                     android:layout_below="@+id/ranking"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100"
+                    android:text="@{ritem.contributions.toString()}"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/name"
                     android:layout_centerHorizontal="true"
                     />
 

@@ -4,5 +4,6 @@ query RankingResult($criteria: String!, $count: Int!, $page: Int!, $generation: 
         name
         generation
         nickname
+        repos_url
     }
 }
