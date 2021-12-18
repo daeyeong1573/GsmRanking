@@ -39,7 +39,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding true
     }
 
@@ -84,6 +84,10 @@ dependencies {
 
     //CircleImage
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
+    implementation 'com.google.android.material:material:1.0.0' // NavigationView
+
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
