@@ -22,6 +22,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.gsm.software.gsmranking.adapter.MainListAdapter
 import org.gsm.software.gsmranking.databinding.ActivityMainBinding
+import org.gsm.software.gsmranking.databinding.HeaderBinding
 import org.gsm.software.gsmranking.util.showVertical
 import org.gsm.software.gsmranking.viewmodel.MainViewModel
 import org.koin.android.ext.android.inject
@@ -31,27 +32,37 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener  {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private lateinit var headB: HeaderBinding
     private val vm :MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.activity = this@MainActivity
-        binding.vm = vm
-        binding.lifecycleOwner = this@MainActivity
+        initViews()
+        setNavigationView()
         setRecyclerView()
-        setDrawerNav()
         vm.getRanking()
 
     }
+
+    //RecyclerView 초기화
     private fun setRecyclerView(){
-        val adapter = MainListAdapter(vm)
+        val adapter = MainListAdapter(vm,this)
         binding.recyclerview.adapter = adapter
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.showVertical(this@MainActivity)
     }
 
-    private fun setDrawerNav() = with(binding){
+    //바인딩 관련뷰 초기화
+    private fun initViews(){
+        binding.activity = this@MainActivity
+        binding.vm = vm
+        binding.lifecycleOwner = this@MainActivity
+    }
+
+
+    //NavigationView 초기화
+    private fun setNavigationView() = with(binding){
         //네비게이션뷰 연결 아래 코드 없을시 메뉴속 아이템 클릭반응 없음
         navigationView.setNavigationItemSelectedListener(this@MainActivity)
         setSupportActionBar(binding.toolbar)
@@ -61,20 +72,18 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     }
 
 
-
-
-    //메뉴 버튼
+    //메뉴 버튼 열기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
                 return true
             }
-
         }
         return super.onOptionsItemSelected(item)
     }
 
+    //메뉴속 아이템 클릭 이벤트
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onNavigationItemSelected: 불러오기")
         when (item.itemId) {
