@@ -1,28 +1,32 @@
 package org.gsm.software.gsmranking.adapter
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.RankingResultQuery
 import org.gsm.software.gsmranking.databinding.RankingItemBinding
 import org.gsm.software.gsmranking.viewmodel.MainViewModel
 
 
-class MainListAdapter(private val viewmodel : MainViewModel)
+class MainListAdapter(private val viewmodel : MainViewModel,private val mContext: Activity)
     : ListAdapter<RankingResultQuery.Ranking, MainListAdapter.ViewHolder>(MainDiffUtil){
 
     inner class ViewHolder(private val binding: RankingItemBinding): RecyclerView.ViewHolder(binding.root) {
-        var int :Int = 1
         fun bind(item: RankingResultQuery.Ranking,position : Int) {
             binding.ritem = item
             binding.vm = viewmodel
             binding.ranking.text ="${position}등"
+            binding.profileImg.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/${item.nickname}"))
+                mContext.startActivity(intent)
+            }
             binding.executePendingBindings() //데이터가 수정되면 즉각 바인딩
         }
 
