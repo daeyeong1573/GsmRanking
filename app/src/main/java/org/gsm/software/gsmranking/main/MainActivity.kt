@@ -1,4 +1,4 @@
-package org.gsm.software.gsmranking
+package org.gsm.software.gsmranking.main
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -10,54 +10,37 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.lifecycle.lifecycleScope
-import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.network.okHttpClient
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import org.gsm.software.gsmranking.adapter.MainListAdapter
+import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityMainBinding
 import org.gsm.software.gsmranking.databinding.HeaderBinding
-import org.gsm.software.gsmranking.util.showVertical
-import org.gsm.software.gsmranking.viewmodel.MainViewModel
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener  {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var headB: HeaderBinding
-    private val vm :MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initViews()
         setNavigationView()
-        setRecyclerView()
-        vm.getRanking()
-
     }
 
-    //RecyclerView 초기화
-    private fun setRecyclerView(){
-        val adapter = MainListAdapter(vm,this)
-        binding.recyclerview.adapter = adapter
-        binding.recyclerview.setHasFixedSize(true)
-        binding.recyclerview.showVertical(this@MainActivity)
-    }
 
-    //바인딩 관련뷰 초기화
+    //기초 뷰 초기화
     private fun initViews(){
         binding.activity = this@MainActivity
-        binding.vm = vm
         binding.lifecycleOwner = this@MainActivity
+        binding.viewPager.adapter = ViewPagerFragmentAdapter(this)
+        val tabTitles = listOf<String>("전체 랭킹","기수별 랭킹")
+        TabLayoutMediator(binding.tabLayout,binding.viewPager) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
+
     }
 
 
@@ -65,6 +48,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     private fun setNavigationView() = with(binding){
         //네비게이션뷰 연결 아래 코드 없을시 메뉴속 아이템 클릭반응 없음
         navigationView.setNavigationItemSelectedListener(this@MainActivity)
+        //headerLayout 바인딩 연결
+        val headV = binding.navigationView.getHeaderView(0)
+        headB = HeaderBinding.bind(headV)
+        headB.activity = this@MainActivity
+        //메뉴바 그리기
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
