@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 @Module
 @InstallIn(SingletonComponent::class)
-class MainRepository @Inject constructor (val api : ApolloClient) {
+class RankingRepository @Inject constructor (val api : ApolloClient) {
     fun getRanking(generation : Int) : ApolloCall<RankingResultQuery.Data>{
-        return api.query(RankingResultQuery(criteria = "contributions", count = 10, page = 1,generation))
+        return api.query(RankingResultQuery(criteria = "contributions", 0, page = 1, generation))
     }
 }
