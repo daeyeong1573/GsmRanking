@@ -1,20 +1,17 @@
 package org.gsm.software.gsmranking.generation
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.KeyEvent.KEYCODE_ENTER
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import org.gsm.software.gsmranking.R
+import org.gsm.software.gsmranking.adapter.RankingListAdapter
 import org.gsm.software.gsmranking.databinding.GenerationRankingFragmentBinding
 import org.gsm.software.gsmranking.viewmodel.RankingViewModel
 
@@ -67,7 +64,7 @@ class GenerationRankingFragment : Fragment() {
 
     //RecyclerView 초기화
     private fun setRecyclerView() {
-        val adapter = GenerationRankingListAdapter(vm, this)
+        val adapter = RankingListAdapter(vm, this)
         binding.recyclerview.adapter = adapter
         binding.recyclerview.setHasFixedSize(true)
     }

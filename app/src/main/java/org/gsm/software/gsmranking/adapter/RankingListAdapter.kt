@@ -1,22 +1,22 @@
 package org.gsm.software.gsmranking.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.RankingResultQuery
 import org.gsm.software.gsmranking.databinding.RankingItemBinding
-import org.gsm.software.gsmranking.viewmodel.MainViewModel
+import org.gsm.software.gsmranking.viewmodel.RankingViewModel
 
 
-class MainListAdapter(private val viewmodel : MainViewModel,private val mContext: Activity)
-    : ListAdapter<RankingResultQuery.Ranking, MainListAdapter.ViewHolder>(MainDiffUtil){
+class RankingListAdapter(private val viewmodel: RankingViewModel, private val mContext: Fragment)
+    : ListAdapter<RankingResultQuery.Ranking, RankingListAdapter.ViewHolder>(MainDiffUtil){
 
     inner class ViewHolder(private val binding: RankingItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RankingResultQuery.Ranking,position : Int) {
@@ -47,7 +47,7 @@ class MainListAdapter(private val viewmodel : MainViewModel,private val mContext
     }
 
 
-    override fun onBindViewHolder(holder:MainListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item,position+1)
 

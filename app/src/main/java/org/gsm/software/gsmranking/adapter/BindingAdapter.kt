@@ -9,7 +9,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.gsm.software.gsmranking.RankingResultQuery
-import org.gsm.software.gsmranking.generation.GenerationRankingListAdapter
 
 object BindingAdapter {
 
@@ -72,7 +71,7 @@ object BindingAdapter {
     @BindingAdapter("listData")
     @JvmStatic
     fun listData(recyclerView: RecyclerView,items: List<RankingResultQuery.Ranking>?){
-        val adapter = recyclerView.adapter as GenerationRankingListAdapter
+        val adapter = recyclerView.adapter as RankingListAdapter
         Log.d(TAG, "listData: ${items?.get(0)?.contributions}")
         adapter.submitList(items?.toMutableList())
     }

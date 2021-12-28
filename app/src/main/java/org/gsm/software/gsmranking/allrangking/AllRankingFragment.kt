@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.AllRankingFragmentBinding
-import org.gsm.software.gsmranking.generation.GenerationRankingListAdapter
+import org.gsm.software.gsmranking.adapter.RankingListAdapter
 import org.gsm.software.gsmranking.viewmodel.RankingViewModel
 
 @AndroidEntryPoint
@@ -37,7 +37,7 @@ class AllRankingFragment : Fragment() {
 
     //RecyclerView 초기화
     private fun setRecyclerView(){
-        val adapter = GenerationRankingListAdapter(vm, this)
+        val adapter = RankingListAdapter(vm, this)
         binding.recyclerview.adapter = adapter
         binding.recyclerview.setHasFixedSize(true)
     }
