@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityMainBinding
 import org.gsm.software.gsmranking.databinding.HeaderBinding
+import org.gsm.software.gsmranking.login.LoginActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener  {
@@ -42,7 +43,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         }.attach()
 
     }
-
 
     //NavigationView 초기화
     private fun setNavigationView() = with(binding){
@@ -87,6 +87,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         }
         return false
     }
+
+    fun goLogin(){
+        startActivity(Intent(this,LoginActivity::class.java))
+    }
+
 
 }
 
