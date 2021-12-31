@@ -36,6 +36,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/login_background"
             android:drawableStart="@drawable/set_github"
+            android:textColorHint="#E8A5A5"
             android:hint="아이디를 입력해 주세요"
             android:gravity="center" />
 

@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
     fun goLogin(){
         startActivity(Intent(this,LoginActivity::class.java))
+        overridePendingTransition(R.anim.left_slide_enter,R.anim.left_slide_exit)
     }
 
 
