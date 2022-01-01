@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="activity"
             type="org.gsm.software.gsmranking.login.LoginActivity" />
@@ -39,6 +38,18 @@
             android:textColorHint="#E8A5A5"
             android:hint="아이디를 입력해 주세요"
             android:gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/github_id"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#E8A5A5"
+            android:onClick="@{()->activity.login()}"
+            />
 
 
 
