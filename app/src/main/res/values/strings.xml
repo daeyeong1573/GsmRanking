@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GsmRanking</string>
+    <string name="right_arrow">&gt;</string>
 </resources>
