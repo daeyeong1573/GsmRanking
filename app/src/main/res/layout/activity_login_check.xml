@@ -1,91 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".login.LoginCheckActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activity"
+            type="org.gsm.software.gsmranking.login.LoginCheckActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".login.LoginCheckActivity">
 
 
-    <TextView
-        android:id="@+id/check_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/blackhansans"
+        <TextView
+            android:id="@+id/check_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/blackhansans"
 
-        android:text="본인의 계정이 맞나요?"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:text="본인의 계정이 맞나요?"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/github_profile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_text"
-        tools:src="@drawable/set_github" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/github_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check_text"
+            tools:src="@drawable/set_github" />
 
-    <TextView
-        android:id="@+id/github_nick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/songmyung"
-        android:textColor="@color/black"
-        android:textSize="29sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/github_profile"
-        app:layout_constraintTop_toBottomOf="@+id/check_text"
-        tools:text="daeyeong1573" />
+        <TextView
+            android:id="@+id/github_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/songmyung"
+            android:textColor="@color/black"
+            android:textSize="29sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/github_profile"
+            app:layout_constraintTop_toBottomOf="@+id/check_text"
+            tools:text="daeyeong1573" />
 
-    <TextView
-        android:id="@+id/github_introduce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/songmyung"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/github_profile"
-        app:layout_constraintTop_toBottomOf="@+id/github_nick"
-        tools:text="열심히 살자" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/check_yes_btn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/btn_background"
-        android:backgroundTint="#C152F435"
-        android:text="네"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/check_no_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/github_profile" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/check_no_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:background="@drawable/btn_background"
-        android:backgroundTint="#E80505"
-        android:text="아니요"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/check_yes_btn"
-        app:layout_constraintTop_toTopOf="@id/github_profile" />
+        <TextView
+            android:id="@+id/github_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/songmyung"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/github_profile"
+            app:layout_constraintTop_toBottomOf="@+id/github_nick"
+            tools:text="열심히 살자" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/check_yes_btn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/btn_background"
+            android:backgroundTint="#C152F435"
+            android:text="네"
+            android:onClick="@{()-> activity.applyLogin()}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/check_no_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/github_profile" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/check_no_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/btn_background"
+            android:backgroundTint="#E80505"
+            android:text="아니요"
+            android:onClick="@{()-> activity.denyLogin()}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/check_yes_btn"
+            app:layout_constraintTop_toTopOf="@id/github_profile" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
