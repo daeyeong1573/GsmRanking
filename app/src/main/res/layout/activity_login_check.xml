@@ -54,7 +54,7 @@
             tools:text="daeyeong1573" />
 
         <TextView
-            android:id="@+id/github_introduce"
+            android:id="@+id/github_subscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
