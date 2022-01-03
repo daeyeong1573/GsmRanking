@@ -9,6 +9,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.gsm.software.gsmranking.model.retrofit.UserApi
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -29,7 +32,6 @@ object NetworkModule {
             .// 이 클라이언트를 통해 오고 가는 네트워크 요청/응답을 로그로 표시하도록 합니다.
             addInterceptor(getLoggingInterceptor())
             .build()
-
     }
 
     @Provides
@@ -41,6 +43,21 @@ object NetworkModule {
             .serverUrl("https://d6ui2fy5uj.execute-api.ap-northeast-2.amazonaws.com/api/graphql")
             .build()
     }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun retrofitClient(okHttpClient: OkHttpClient) :Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(" https://api.github.com/")
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
 
     // 서버로 부터 받아온 데이터 log 찍기
     private fun getLoggingInterceptor(): HttpLoggingInterceptor =
