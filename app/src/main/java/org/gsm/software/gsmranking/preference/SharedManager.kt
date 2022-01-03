@@ -15,7 +15,7 @@ class SharedManager(context: Context) {
 
     fun getUser(): User {
         return User().apply {
-            id = prefs["name", ""]
+            id = prefs["id", ""]
         }
     }
 
