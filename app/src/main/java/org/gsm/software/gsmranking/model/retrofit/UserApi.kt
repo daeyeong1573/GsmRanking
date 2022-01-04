@@ -10,6 +10,6 @@ interface UserApi {
     @GET("users/{userId}")
     suspend fun getUserInfo(
         @Path("userId") id : String
-    ):Response<UserInfo>
+    ):UserInfo
 
 }
