@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="activity"
             type="org.gsm.software.gsmranking.main.MainActivity" />
+        <variable
+            name="lvm"
+            type="org.gsm.software.gsmranking.login.LoginViewModel" />
     </data>
 
     <RelativeLayout
@@ -13,12 +17,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            login_profile="@{lvm.photo_url}"
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/h_login"
