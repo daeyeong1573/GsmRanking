@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="activity"
             type="org.gsm.software.gsmranking.login.LoginCheckActivity" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/blackhansans"
-
             android:text="본인의 계정이 맞나요?"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -33,7 +34,7 @@
             android:id="@+id/github_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/check_text"
@@ -43,13 +44,12 @@
             android:id="@+id/github_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
             android:layout_marginTop="90dp"
             android:fontFamily="@font/songmyung"
             android:textColor="@color/black"
-            android:textSize="29sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/github_profile"
+            app:layout_constraintStart_toEndOf="@+id/github_profile"
             app:layout_constraintTop_toBottomOf="@+id/check_text"
             tools:text="daeyeong1573" />
 
@@ -57,14 +57,13 @@
             android:id="@+id/github_subscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/songmyung"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/github_profile"
+            app:layout_constraintStart_toEndOf="@+id/github_profile"
             app:layout_constraintTop_toBottomOf="@+id/github_nick"
-            tools:text="열심히 살자" />
+            tools:text="재밌는 사람이 되기위해 노력합니다." />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -74,8 +73,8 @@
             android:layout_marginEnd="60dp"
             android:background="@drawable/btn_background"
             android:backgroundTint="#C152F435"
-            android:text="네"
             android:onClick="@{()-> activity.applyLogin()}"
+            android:text="네"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/check_no_btn"
@@ -89,8 +88,8 @@
             android:layout_marginStart="60dp"
             android:background="@drawable/btn_background"
             android:backgroundTint="#E80505"
-            android:text="아니요"
             android:onClick="@{()-> activity.denyLogin()}"
+            android:text="아니요"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

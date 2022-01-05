@@ -7,7 +7,7 @@ data class UserInfo(
     @SerializedName("login")
     var id : String,
     @SerializedName("avatar_url")
-    var profile : String,
-    @SerializedName("subscriptions_url")
-    var subscription : String
+    var imgUrl : String?,
+    @SerializedName("bio")
+    var bio : String
 )

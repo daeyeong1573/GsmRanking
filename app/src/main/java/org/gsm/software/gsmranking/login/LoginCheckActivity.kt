@@ -1,30 +1,57 @@
 package org.gsm.software.gsmranking.login
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityLoginCheckBinding
 import org.gsm.software.gsmranking.main.MainActivity
 import org.gsm.software.gsmranking.model.data.User
 import org.gsm.software.gsmranking.preference.SharedManager
-import org.koin.android.ext.android.get
 
+@AndroidEntryPoint
 class LoginCheckActivity : AppCompatActivity() {
     private val binding by lazy { ActivityLoginCheckBinding.inflate(layoutInflater) }
     private val sharedManager : SharedManager by lazy { SharedManager(this) }
+    private val lvm : LoginViewModel by viewModels()
     private lateinit var gitId : String
 
     override fun onResume() {
         super.onResume()
         var intent = intent
         gitId = intent.getStringExtra("id").toString()
+        getUser(gitId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.activity = this
+
+    }
+
+   private fun getUser(id :String) = with(binding){
+        lvm.getUser(id)
+
+        lvm.photo_url.observe(this@LoginCheckActivity, Observer {
+            Glide.with(this@LoginCheckActivity)
+                .load(it)
+                .into(githubProfile)
+        })
+
+       lvm.nickName.observe(this@LoginCheckActivity, Observer {
+           githubNick.text = it.toString()
+       })
+
+       lvm.bio.observe(this@LoginCheckActivity, Observer {
+           githubSubscription.text = it.toString()
+       })
 
     }
 
