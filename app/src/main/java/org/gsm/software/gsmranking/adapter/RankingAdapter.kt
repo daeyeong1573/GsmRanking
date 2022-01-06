@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.RankingResultQuery
 
-object BindingAdapter {
+object RankingAdapter {
 
     @BindingAdapter("setProfile")
     @JvmStatic
@@ -77,15 +77,5 @@ object BindingAdapter {
         adapter.submitList(items?.toMutableList())
     }
 
-    @BindingAdapter("login_profile")
-    @JvmStatic
-    fun checkLoginProfile(view: ImageView, url: String) {
-            Glide.with(view.context)
-                .load(url)
-                .fallback(R.drawable.ic_baseline_person_24)
-                .into(view)
-
-
-    }
 
 }

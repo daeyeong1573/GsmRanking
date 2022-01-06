@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import dagger.hilt.android.AndroidEntryPoint
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityLoginBinding
 import org.gsm.software.gsmranking.model.data.User
 import org.gsm.software.gsmranking.preference.SharedManager
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
