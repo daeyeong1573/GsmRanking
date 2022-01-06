@@ -22,10 +22,14 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
     private val _nickName = MutableLiveData<String>()
     val nickName: LiveData<String> get() = _nickName
 
+    private val _loginCheck = MutableLiveData<Boolean>()
+    val loginCheck: LiveData<Boolean> get() = _loginCheck
+
     init {
         _photo_url.value = ""
         _nickName.value = ""
         _bio.value = ""
+        _loginCheck.value = true
     }
 
 
@@ -41,14 +45,13 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
         response.apply {
             if (this != null) {
                 _nickName.value = id
-                _photo_url.value = imgUrl.toString()
-                Log.d(TAG, "getUser: $photo_url")
+                _photo_url.value = imgUrl
                 _bio.value = bio
+                _loginCheck.value = false
+                Log.d(TAG, "getUser: $_loginCheck")
             } else {
                 Log.d(TAG, "getUser: UserInfo is null")
             }
         }
-
-
     }
 }
