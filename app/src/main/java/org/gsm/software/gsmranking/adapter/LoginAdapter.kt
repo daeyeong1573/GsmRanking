@@ -20,7 +20,12 @@ object LoginAdapter {
     @BindingAdapter("changeProfile","checkLogin")
     @JvmStatic
     fun changeProfile(view : CircleImageView, url : String,check : Boolean){
-        if (check) view.setImageDrawable(R.drawable.ic_baseline_person_24.toDrawable())
+        if (check) {
+            view.setImageDrawable(R.drawable.ic_baseline_person_24.toDrawable())
+            Glide.with(view.context)
+                .load(R.drawable.set_github)
+                .into(view)
+        }
         else Glide.with(view.context).load(url).into(view)
     }
 

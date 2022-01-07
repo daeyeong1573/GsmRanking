@@ -109,6 +109,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 )
                 startActivity(intent)
             }
+            R.id.logOut ->{
+                CoroutineScope(Dispatchers.IO).launch{
+                    MyApplication.getInstance().getDataStore().setUser("")
+                }
+                //새로고침
+                finish()
+                startActivity(intent)
+                overridePendingTransition(0,0)
+            }
         }
         return false
     }
