@@ -7,7 +7,7 @@
             name="activity"
             type="org.gsm.software.gsmranking.main.MainActivity" />
         <variable
-            name="lvm"
+            name="vm"
             type="org.gsm.software.gsmranking.login.LoginViewModel" />
     </data>
 
@@ -17,37 +17,39 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            changeProfile="@{vm.photo_url}"
+            checkLogin="@{vm.loginCheck}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="start"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            login_profile="@{lvm.photo_url}"
-            tools:src="@mipmap/ic_launcher" />
+            android:layout_marginTop="50dp" />
 
         <TextView
             android:id="@+id/h_login"
+            loginCheck="@{vm.loginCheck}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="75dp"
             android:layout_toRightOf="@+id/imageView"
-            android:text="로그인하기 &gt;"
             android:onClick="@{()->activity.goLogin()}"
+            android:text="로그인하기 &gt;"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/h_name"
+            android:id="@+id/h_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="75dp"
             android:layout_toRightOf="@+id/imageView"
-            android:visibility="gone"
-            android:text="이름" />
+            android:text="@{vm.nickName}"
+            loginCheck="@{!vm.loginCheck}"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
 
 
     </RelativeLayout>
