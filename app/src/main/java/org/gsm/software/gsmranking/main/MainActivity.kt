@@ -10,19 +10,42 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import org.gsm.software.gsmranking.MyApplication
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityMainBinding
 import org.gsm.software.gsmranking.databinding.HeaderBinding
 import org.gsm.software.gsmranking.login.LoginActivity
+import org.gsm.software.gsmranking.login.LoginViewModel
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener  {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var headB: HeaderBinding
+    private val lvm: LoginViewModel by viewModels()
+    lateinit var gitId: String
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+           gitId = MyApplication.getInstance().getDataStore().idFlow.first()
+            Log.d(TAG, "onResume: $gitId")
+            if (gitId.isNotEmpty()) {
+                //로그인 했다면 유저정보 불러오기
+                lvm.getUser(gitId)
+            }
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,25 +56,27 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
 
     //기초 뷰 초기화
-    private fun initViews(){
+    private fun initViews() {
         binding.activity = this@MainActivity
         binding.lifecycleOwner = this@MainActivity
         binding.viewPager.adapter = ViewPagerFragmentAdapter(this)
-        val tabTitles = listOf<String>("전체 랭킹","기수별 랭킹")
-        TabLayoutMediator(binding.tabLayout,binding.viewPager) { tab, position ->
+        //headerLayout 바인딩 연결
+        val headV = binding.navigationView.getHeaderView(0)
+        headB = HeaderBinding.bind(headV)
+        headB.activity = this@MainActivity
+        headB.lifecycleOwner = this@MainActivity
+        headB.vm = lvm
+        val tabTitles = listOf<String>("전체 랭킹", "기수별 랭킹")
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
 
     }
 
     //NavigationView 초기화
-    private fun setNavigationView() = with(binding){
+    private fun setNavigationView() = with(binding) {
         //네비게이션뷰 연결 아래 코드 없을시 메뉴속 아이템 클릭반응 없음
         navigationView.setNavigationItemSelectedListener(this@MainActivity)
-        //headerLayout 바인딩 연결
-        val headV = binding.navigationView.getHeaderView(0)
-        headB = HeaderBinding.bind(headV)
-        headB.activity = this@MainActivity
         //메뉴바 그리기
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -88,9 +113,9 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         return false
     }
 
-    fun goLogin(){
-        startActivity(Intent(this,LoginActivity::class.java))
-        overridePendingTransition(R.anim.left_slide_enter,R.anim.left_slide_exit)
+    fun goLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        overridePendingTransition(R.anim.left_slide_enter, R.anim.left_slide_exit)
     }
 
 

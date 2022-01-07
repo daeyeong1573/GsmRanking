@@ -1,24 +1,23 @@
 package org.gsm.software.gsmranking.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.gsm.software.gsmranking.MyApplication
 import org.gsm.software.gsmranking.R
 import org.gsm.software.gsmranking.databinding.ActivityLoginCheckBinding
 import org.gsm.software.gsmranking.main.MainActivity
-import org.gsm.software.gsmranking.model.data.User
-import org.gsm.software.gsmranking.preference.SharedManager
 
 @AndroidEntryPoint
 class LoginCheckActivity : AppCompatActivity() {
     private val binding by lazy { ActivityLoginCheckBinding.inflate(layoutInflater) }
-    private val sharedManager : SharedManager by lazy { SharedManager(this) }
     private val lvm : LoginViewModel by viewModels()
     private lateinit var gitId : String
 
@@ -58,10 +57,9 @@ class LoginCheckActivity : AppCompatActivity() {
 
 
     fun applyLogin(){
-        val createUser = User().apply {
-            id = gitId
+        CoroutineScope(Dispatchers.IO).launch {
+            MyApplication.getInstance().getDataStore().setUser(gitId)
         }
-        sharedManager.saveUser(createUser)
         startActivity(Intent(this,MainActivity::class.java))
     }
 

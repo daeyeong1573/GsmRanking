@@ -2,17 +2,23 @@ package org.gsm.software.gsmranking
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import org.gsm.software.gsmranking.preference.DataStoreModule
 
 @HiltAndroidApp
 class MyApplication : Application() {
-    private var instance : MyApplication? = null
+    private lateinit var dataStore : DataStoreModule
+
+    companion object {
+        private lateinit var myApplication: MyApplication
+        fun getInstance() : MyApplication = myApplication
+    }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        myApplication = this
+        dataStore = DataStoreModule(this)
     }
+
+    fun getDataStore() : DataStoreModule = dataStore
+
 }
