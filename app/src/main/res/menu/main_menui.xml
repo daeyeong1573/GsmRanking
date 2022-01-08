@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/addGit"
-        android:title="나도 등록하러 가기"
-        app:showAsAction="collapseActionView"
-        />
-</menu>
