@@ -3,6 +3,7 @@ package org.gsm.software.gsmranking.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -19,7 +20,7 @@ import org.gsm.software.gsmranking.main.MainActivity
 class LoginCheckActivity : AppCompatActivity() {
     private val binding by lazy { ActivityLoginCheckBinding.inflate(layoutInflater) }
     private val lvm : LoginViewModel by viewModels()
-    private lateinit var gitId : String
+    lateinit var gitId : String
 
     override fun onResume() {
         super.onResume()
@@ -49,7 +50,7 @@ class LoginCheckActivity : AppCompatActivity() {
        })
 
        lvm.bio.observe(this@LoginCheckActivity, Observer {
-           githubSubscription.text = it.toString()
+           githubDescription.text = it.toString()
        })
 
     }
