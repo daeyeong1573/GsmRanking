@@ -1,6 +1,10 @@
 package org.gsm.software.gsmranking.adapter
 
+import android.content.ContentValues.TAG
+import android.graphics.Color
+import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.BindingAdapter
@@ -28,8 +32,5 @@ object LoginAdapter {
         }
         else Glide.with(view.context).load(url).into(view)
     }
-
-
-
 
 }
