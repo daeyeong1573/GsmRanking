@@ -46,15 +46,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="GRIG"
+                        android:padding="15dp"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <Spinner
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/select_criteria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/spinner_background"
+                        android:popupBackground="@color/main_back"
                         android:layout_gravity="right"
-                        android:paddingVertical="10dp"
-                        android:layout_marginRight="30dp"
+                        android:spinnerMode="dropdown"
                         />
 
                 </androidx.appcompat.widget.Toolbar>
