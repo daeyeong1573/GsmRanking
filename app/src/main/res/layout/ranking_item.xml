@@ -16,25 +16,25 @@
     </data>
 
     <LinearLayout
-        android:background="@color/white"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center">
 
         <androidx.cardview.widget.CardView
-            android:backgroundTint="@color/white"
             android:layout_width="340dp"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="15dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:shadowColor="#6A6868"
-            android:layout_height="wrap_content">
+            app:cardCornerRadius="15dp"
+            app:cardElevation="2dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
                 android:background="@drawable/ranking_background"
-                >
+                android:backgroundTint="@color/white">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_img"
@@ -60,28 +60,56 @@
 
                 <TextView
                     android:id="@+id/name"
+                    setGeneration="@{ritem.generation}"
+                    setName="@{ritem.name}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ranking"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="2dp"
-                    setName="@{ritem.name}"
-                    setGeneration="@{ritem.generation}"
                     android:layout_toRightOf="@+id/profile_img"
                     android:textColor="@color/black"
                     tools:text="오병진" />
 
                 <TextView
+                    android:id="@+id/contributions"
+                    amount="@{ritem.contributions}"
+                    type="@{1}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/name"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="2dp"
                     android:layout_toRightOf="@+id/profile_img"
-                    contributions="@{ritem.contributions}"
                     android:textColor="@color/black"
-                    tools:text="commit : 100" />
+                    tools:text="contributions : 100" />
+
+                <TextView
+                    android:id="@+id/star"
+                    type="@{2}"
+                    amount="@{ritem.stared}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/contributions"
+                    android:layout_marginLeft="50dp"
+                    android:layout_toRightOf="@id/profile_img"
+                    android:textColor="@color/black"
+                    tools:text="star : 5" />
+
+
+                <TextView
+                    android:id="@+id/fork"
+                    type="@{3}"
+                    amount="@{ritem.forked}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/star"
+                    android:layout_marginLeft="50dp"
+                    android:layout_toRightOf="@id/profile_img"
+                    android:textColor="@color/black"
+                    android:paddingBottom="5dp"
+                    tools:text="fork : 5" />
+
 
             </RelativeLayout>
 
