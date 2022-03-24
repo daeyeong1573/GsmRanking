@@ -6,5 +6,7 @@ query RankingResult($criteria: String!, $count: Int!, $page: Int!, $generation: 
         nickname
         repos_url
         avatar_url
+        stared
+        forked
     }
 }
