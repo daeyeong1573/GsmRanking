@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         binding.activity = this
     }
 
+    //뒤로가기 처리
     override fun onBackPressed() {
         if (doubleBackToExit) {
             super.onBackPressed()
@@ -35,10 +36,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //딜레이 함수
     private fun runDelayed(millis: Long, function: () -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(function, millis)
     }
 
+    //로그인 함수
     fun login() = with(binding) {
         val intent = Intent(this@LoginActivity, LoginCheckActivity::class.java)
         val id = githubId.text.toString()
