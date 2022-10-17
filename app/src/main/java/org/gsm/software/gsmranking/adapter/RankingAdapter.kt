@@ -57,16 +57,32 @@ object RankingAdapter {
         }
     }
 
+    @BindingAdapter("loading")
+    @JvmStatic
+    fun loading(view:View,type : Boolean){
+        if(!type){
+            view.visibility = View.GONE
+        }else{
+            view.visibility = View.VISIBLE
+        }
+    }
+
     @BindingAdapter("setName", "setGeneration")
     @JvmStatic
     fun setName(view: TextView, name: String, generation: Int) {
         view.text = "$name | $generation 기"
     }
 
-    @BindingAdapter("contributions")
+    @BindingAdapter("type","amount")
     @JvmStatic
-    fun contributions(view: TextView, contributions: Int) {
-        view.text = "contributions : $contributions"
+    fun contributions(view: TextView, type : Int, amount: Int) {
+        var text : String = ""
+        when(type){
+            1 -> text = "contribution"
+            2 -> text = "star"
+            3 -> text = "fork"
+        }
+        view.text = "$text : $amount"
     }
 
     @BindingAdapter("listData")

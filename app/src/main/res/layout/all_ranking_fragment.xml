@@ -27,7 +27,15 @@
                 tools:layout_editor_absoluteX="-74dp"
                 tools:layout_editor_absoluteY="231dp"
                 tools:listitem="@layout/ranking_item" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            loading="@{vm.loading}"
+            />
 
     </FrameLayout>
 </layout>
