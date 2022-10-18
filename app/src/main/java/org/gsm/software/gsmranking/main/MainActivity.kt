@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +26,7 @@ import org.gsm.software.gsmranking.databinding.ActivityMainBinding
 import org.gsm.software.gsmranking.databinding.HeaderBinding
 import org.gsm.software.gsmranking.login.LoginActivity
 import org.gsm.software.gsmranking.login.LoginViewModel
+import org.gsm.software.gsmranking.viewmodel.RankingViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var headB: HeaderBinding
     private val lvm: LoginViewModel by viewModels()
+    private val rvm: RankingViewModel by viewModels()
+
     lateinit var gitId: String
 
     override fun onResume() {
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initViews()
+        selectAdapter()
         setNavigationView()
     }
 
@@ -70,6 +75,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+    }
+
+    //Spinner
+    private fun selectAdapter() {
+        //Adapter 연결
+        binding.selectCriteria.adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.select_criteria,
+            android.R.layout.simple_spinner_item
+        )
 
     }
 
