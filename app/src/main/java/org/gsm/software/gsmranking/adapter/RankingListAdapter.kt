@@ -15,13 +15,12 @@ import org.gsm.software.gsmranking.databinding.RankingItemBinding
 import org.gsm.software.gsmranking.viewmodel.RankingViewModel
 
 
-class RankingListAdapter(private val viewmodel: RankingViewModel, private val mContext: Fragment)
+class RankingListAdapter(private val mContext: Fragment)
     : ListAdapter<RankingResultQuery.Ranking, RankingListAdapter.ViewHolder>(MainDiffUtil){
 
     inner class ViewHolder(private val binding: RankingItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RankingResultQuery.Ranking,position : Int) {
             binding.ritem = item
-            binding.vm = viewmodel
             binding.ranking.text ="${position}등"
             binding.profileImg.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/${item.nickname}"))
